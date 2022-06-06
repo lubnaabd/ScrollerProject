@@ -8,36 +8,10 @@ import CSv from "../../../Components/Icons/CSv";
 import { useParams } from "react-router";
 
 const Index = () => {
-  const [list, setList] = useState([
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-  ]);
+  const [list, setList] = useState([]);
+  const [dataCSV, setdataCSV] = useState([]);
+
+  let data = [];
   const { id } = useParams();
   const getData = async () => {
     await axios(`http://atalla.info:8923/rest/jview/${id}`, {
@@ -48,27 +22,34 @@ const Index = () => {
       },
     }).then((response) => {
       console.log(response);
-      // setList(r)
+      list.answer_count > 0&&list.word.forEach((item) => {
+        data.push({
+          statment: `${list.s_first} ${item.word} ${list.s_second}`,
+        });
+      });
+      setList(response.data);
+      setdataCSV(data);
+ 
     });
   };
   useEffect(() => {
     getData();
-  }, []);
 
+  }, []);
   return (
     <div>
       <SpaceBetween>
-        <Links to={"/control_scroll"}>
+        <Links to={"/"}>
           <Back />
           <span>Back</span>
         </Links>
-        <CSVLinks data={list}>
+        <CSVLinks data={dataCSV}>
           <span>Csv</span>
           <CSv />
         </CSVLinks>
         ;
       </SpaceBetween>
-      {list.length > 0 ? <ListItems list={list} /> : <Loading />}
+      {list.answer_count > 0 ? <ListItems list={list} /> : <Loading />}
     </div>
   );
 };

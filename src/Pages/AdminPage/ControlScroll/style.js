@@ -15,6 +15,7 @@ export const Word = styled.h3`
 export const Statment = styled.div`
   display: flex;
   justify-content: flex-start;
+  
 `;
 
 export const SpaceBetween = styled.div`

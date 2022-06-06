@@ -13,29 +13,32 @@ import ViewIcon from "../../../Components/Icons/view";
 import ListIcon from "../../../Components/Icons/ListIcon";
 const ListItem = (props) => {
   const { id } = useParams();
+  // s_second
+
+  // s_first
   return (
     <div>
       {props.list.map((element, index) => (
         <Card key={index}>
           <SpaceBetween>
             <Statment>
-              <Word>{element.word1}</Word>
+              <Word>{element.s_first}</Word>
               <Word> _ _ _</Word>
-              <Word>{element.word3}</Word>
+              <Word>{element.s_second}</Word>
             </Statment>
             <Statment>
               <ButtonBackground>
-                <Links to={`/1/view`}>
+                <Links to={`/${element.id}/view`}>
                   <Run />
                 </Links>
               </ButtonBackground>{" "}
               <ButtonBackground>
-                <Links to={`/1`}>
+                <Links to={`/${element.id}`}>
                   <ViewIcon />
                 </Links>{" "}
               </ButtonBackground>
               <ButtonBackground>
-                <Links to={`/1/list`}>
+                <Links to={`/${element.id}/list`}>
                   <ListIcon />
                 </Links>
               </ButtonBackground>

@@ -37,20 +37,22 @@ const ListItem = (props) => {
           depth: 200,
           modifier: 1,
           slideShadows: false,
-          scale	:1
+          scale: 1,
           // transformEl:{fontsize:10}
         }}
       >
-        {props.data.length > 0 &&
-          props.data.map((element, index) => (
-            <SwiperSlide key={ index}>
+        {
+          props.data&&props.data.answer_count>0&&
+          props.data.word.map((element, index) => (
+            <SwiperSlide key={index}>
               <Statment>
-                <Word>{element.word1}</Word>
-                <Word>{element.word2}</Word>
-                <Word>{element.word3}</Word>
+                <Word>{props.data.s_first}</Word>
+                <Word>{element.word}</Word>
+                <Word>{props.data.s_second}</Word>
               </Statment>
             </SwiperSlide>
-          ))}
+          ))
+          }
       </Swiper>
     </Swipers>
   );

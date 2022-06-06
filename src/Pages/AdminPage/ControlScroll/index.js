@@ -7,36 +7,7 @@ import axios from "axios";
 const Index = () => {
   const { id } = useParams();
 
-  const [list, setList] = useState([
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-    { word1: "Marburg", word2: "XXX", word3: "world" },
-  ]);
+  const [list, setList] = useState([]);
 
   const getData = async () => {
     let url = "http://atalla.info:8923/rest/list";
@@ -47,7 +18,8 @@ const Index = () => {
         "Content-Type": "application/json",
       },
     }).then((response) => {
-      console.log(response);
+      console.log(response.data);
+      setList(response.data);
     });
 
     // setList(data);

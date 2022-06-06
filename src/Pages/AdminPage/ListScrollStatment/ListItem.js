@@ -4,14 +4,16 @@ import { Statment, Word } from "./style";
 const ListItem = (props) => {
   return (
     <div>
-      {props.list.map((element, index) => (
-        <Statment key={index}>
-          <h3>{index + 1}</h3>
-          <Word>{element.word1}</Word>
-          <Word>{element.word2}</Word>
-          <Word>{element.word3}</Word>
-        </Statment>
-      ))}
+      {props.list &&
+        props.list.answer_count > 0 &&
+        props.list.word.map((element, index) => (
+          <Statment key={index}>
+            <h3>{index + 1}</h3>
+            <Word>{props.list.s_first}</Word>
+            <Word>{element.word}</Word>
+            <Word>{props.list.s_second}</Word>
+          </Statment>
+        ))}
     </div>
   );
 };
